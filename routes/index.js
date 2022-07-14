@@ -16,10 +16,7 @@ function asyncHandler(cb){
 }
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
-  // const books = await Book.findAll(req.body);
-  // console.log(books);
   res.redirect("/books");
-  // res.render('index', { title: 'Express' });
 }));
 
 /* Get full list of books. */
@@ -32,10 +29,8 @@ router.get('/books', asyncHandler(async (req, res) => {
 //gets books create new book form
 router.get('/books/new', asyncHandler(async (req, res) => {
   const books = await Book.findAll();
-  //  if(books) {
      res.render("new-book");      
-  // } else {
-  //  res.sendStatus(404);
+
   // }
 }));
 
@@ -81,7 +76,7 @@ router.post('/books/:id', asyncHandler(async (req, res, next) => {
   } catch (error) {
     if(error.name === "SequelizeValidationError") {
       books = await Book.build(req.body);
-      books.id = req.params.id; // make sure correct article gets updated
+      books.id = req.params.id;
       res.render("update-book", { books, errors: error.errors, title: "Update Book" })
     } else {
       throw error;
