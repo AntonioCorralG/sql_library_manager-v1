@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    title= title 
+    link(rel='stylesheet', href='../public/stylesheets/style.css')
+    h1= err.message
+    h2= err.status
+    br
+    p
+    a(href='/').button Back to Homepage
